@@ -1,15 +1,15 @@
-CREATE OR REPLACE PROCEDURE list_employees IS
-  CURSOR emp_cur IS
-    SELECT emp_id, emp_name FROM employees;
+create or replace procedure list_employees is
+  cursor emp_cur is
+    select emp_id, emp_name from employees;
 
-  v_id   employees.emp_id%TYPE;
-  v_name employees.emp_name%TYPE;
-BEGIN
-  OPEN emp_cur;
-  LOOP
-    FETCH emp_cur INTO v_id, v_name;
-    EXIT WHEN emp_cur%NOTFOUND;
-    DBMS_OUTPUT.PUT_LINE('ID: ' || v_id || ', Name: ' || v_name);
-  END LOOP;
-  CLOSE emp_cur;
-END;
+  v_id   employees.emp_id%type;
+  v_name employees.emp_name%type;
+begin
+  open emp_cur;
+  loop
+    fetch emp_cur into v_id, v_name;
+    exit when emp_cur%notfound;
+    dbms_output.put_line('ID: ' || v_id || ', Name: ' || v_name);
+  end loop;
+  close emp_cur;
+end;
