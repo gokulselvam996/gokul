@@ -1,0 +1,15 @@
+CREATE OR REPLACE PROCEDURE list_employees IS
+  CURSOR emp_cur IS
+    SELECT emp_id, emp_name FROM employees;
+
+  v_id   employees.emp_id%TYPE;
+  v_name employees.emp_name%TYPE;
+BEGIN
+  OPEN emp_cur;
+  LOOP
+    FETCH emp_cur INTO v_id, v_name;
+    EXIT WHEN emp_cur%NOTFOUND;
+    DBMS_OUTPUT.PUT_LINE('ID: ' || v_id || ', Name: ' || v_name);
+  END LOOP;
+  CLOSE emp_cur;
+END;
